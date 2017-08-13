@@ -1,0 +1,113 @@
+en caso de errors 
+p_ssql = " SELECT " & _
+                      " MT.IDUSR  [PERNR],  " & _
+                      "TV.FE_INIC_VACA  [KTART_01], " & _
+                       "TV.NU_DIAS  [ANZHL] " & _
+                      "P1.FE_INGR_EMPR   [BEGDA_01], " & _
+                      "''  [ENDDA_01], " & _
+                      "''  [DESTA_01], " & _
+                      "''  [DEEND_01], " & _
+                      
+
+ p_ssql = " SELECT " & _
+                      " MT.IDUSR  [PERNR],  " & _
+                      "TV.FE_INIC_VACA  [KTART_01], " & _
+                      "P1.FE_INGR_EMPR   [BEGDA_01], " & _
+                      "''  [ENDDA_01], " & _
+                      "''  [DESTA_01], " & _
+                      "''  [DEEND_01], " & _
+                      "TV.NU_DIAS  [ANZHL] " & _
+
+
+For i = 0 To o_record_sql_sel.Fields.Count - 1
+                Select Case i
+                    Case 1
+                        'Guardamos la fecha inicio de vacaciones
+                        w_fechvca = Format(o_record_sql_sel.Fields(c).value, "dd/MM/yyyy")
+                        'Seteamos el valor a mostrar con 90 
+                        w_valor = "90"
+                    Case 2
+                        w_idusr = o_record_sql_sel.Fields(0).value
+                        'Validamos que sea el mismo empleado 
+                        If (w_idusra = w_idusr) Then
+                            'Seteamos la fecha de inicio de valides igual a la fecha de inicio de liqu de conting
+                            w_valor = w_fechilc
+                        Else
+                            'Cambia de formato a dd/MM/yyy
+                            w_valor = Format(o_record_sql_sel.Fields(c).value, "dd/MM/yyyy")
+                            'Calculo del dia anterior 
+                            w_d = Mid(w_valor, 1, 2)
+                            If w_d > 1 Then
+                                w_dant = Mid(w_valor, 1, 2) - 1
+                            Else
+                                w_dant = "01"
+                            End If
+                            'Guardo la fecha de ing a la empresa
+                            w_fini_em = w_valor
+                        End If
+
+                    Case 3
+                        w_idusr = o_record_sql_sel.Fields(0).value
+                        'Validamos que sea el mismo empleado 
+                        If (w_idusra = w_idusr) Then
+                            'Seteamos la fech fin de valides con el valor de fecha fin de liq de conting
+                            w_valor = w_fechflc
+                        Else
+                            'Calculos para la fecha fin de valides 
+                            w_fech = w_dant & "/" & Mid(w_fini_em, 4, 10)
+                            w_fechfv = DateAdd(DateInterval.Year, 1, CDate(w_fech))
+                            'Guardamos la fecha de fin de valides 
+                            w_valor = CStr(w_fechfv)
+                        End If
+
+                    Case 4
+                        w_idusr = o_record_sql_sel.Fields(0).value
+                        'Validamos que sea el mismo empleado 
+                        If (w_idusra = w_idusr) Then
+                            'Guardamos fecha de incio de liqu de contingentes
+                            w_fechilc = DateAdd(DateInterval.Year, 1, CDate(w_fechilc))
+                            'calculo para la fecha de inicio de lique de contingentes 
+                            w_valor = w_fechilc
+                        Else
+                            'guardamos fecha de inicio de liqu de contingentes
+                            w_fechilc = DateAdd(DateInterval.Year, 1, CDate(w_fini_em))
+                            w_valor = w_fechilc
+                        End If
+
+                    Case 5
+                        'guardamos fecha de fin de liqu de contingentes
+                        w_fech = w_dant & "/" & Mid(w_fechilc, 4, 10)
+                        w_fechflc = DateAdd(DateInterval.Year, 1, CDate(w_fech))
+                        w_valor = CStr(w_fechflc)
+                    Case 6
+                        'Calculo de la cant de contingentes de tiempo de personal
+                        w_dvaca = o_record_sql_sel.Fields(c).value()
+                        'Validamos que sea el mismo empleado 
+                        If (w_idusra = w_idusr) Then
+                            'Seteamos la fecha de inicio de valides igual a la fecha de inicio de liqu de conting
+                            w_fechiv = w_fechilc
+                        Else
+                            'Cambia de formato a dd/MM/yyy 
+                            w_valor = Format(o_record_sql_sel.Fields(2).value, "dd/MM/yyyy")
+                            'Guardo la fecha de inicio de la empresa
+                            w_fechiv = w_valor
+                        End If
+
+                        'Si estamos dentro de mi rango de valides
+                        If w_fechvca <= w_fechiv Then
+                            w_valor = 0
+                            'Validamos que nuestra fecha de vaciones a estado dentro del rango de liquidacion cerrado
+                        ElseIf (w_fechvca <= w_fechflc) Then
+                            If w_dvaca = 30 Then
+                                'Blanquea registro si se a usado todas las vacaciones 
+                                w_valor = ""
+                            Else
+                                'Guardamos la cant de conting de tiempo de personal
+                                w_valor = 30 - w_dvaca
+                            End If
+
+                        End If
+
+                    Case Else
+                        w_valor = o_record_sql_sel.Fields(c).value()
+                End Select

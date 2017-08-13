@@ -1,0 +1,5 @@
+Programa: Corre en fondo leyendo un destino y con una 
+cadena de parametros generar data HR
+Ejecutado por: ZO065-Asigna Drivers KSV5 x Leasing
+
+Puede usarse Prb0_ACT.bat como batch de pruebas

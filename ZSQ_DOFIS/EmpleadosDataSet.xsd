@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmpleadosDataSet" targetNamespace="http://tempuri.org/EmpleadosDataSet.xsd" xmlns:mstns="http://tempuri.org/EmpleadosDataSet.xsd" xmlns="http://tempuri.org/EmpleadosDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="cnOfiplan" IsAppSettingsProperty="true" Modifier="Assembly" Name="cnOfiplan (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ZSQ_DOFIS.My.MySettings.GlobalReference.Default.cnOfiplan" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources>
+          <DbSource ConnectionRef="cnOfiplan (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EmpleadosQuery" MethodsParameterType="SQL" Modifier="Public" Name="EmpleadosQuery" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="EmpleadosQuery">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT     MT.IDUSR, P1.FE_INGR_EMPR
+FROM         TMTRAB_EMPR AS P1 INNER JOIN
+                      TMTRAB_PERS AS N1 ON P1.CO_TRAB = N1.CO_TRAB INNER JOIN
+                      TDCCOS_TRAB AS C1 ON P1.CO_TRAB = C1.CO_TRAB INNER JOIN
+                      MTRA AS MT ON P1.CO_TRAB = MT.STCD1
+WHERE     (P1.CO_EMPR = '10') AND (SUBSTRING(CAST(C1.CO_CENT_COST AS CHAR), 1, 3) = '011') AND (P1.TI_SITU = 'ACT')
+ORDER BY MT.IDUSR</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmpleadosDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="EmpleadosDataSet" msprop:Generator_UserDSName="EmpleadosDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

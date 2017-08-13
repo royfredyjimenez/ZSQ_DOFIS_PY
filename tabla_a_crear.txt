@@ -1,0 +1,25 @@
+1.
+--------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+Crear la tabla sql ------nombre de la tabla dbo.TABL
+IDTAB VARCHAR2  T5
+IDINI VARCHAR16 poner dni
+IDFIN VARCHAR16 codigo posicion 
+IDGR1           gerencia de 1 linea
+IDGR2           gerencia de segunda linea(unidad)
+
+-- el excel debe estar en csv
+--- leer el excel para cargar las posiciones
+delete
+insert
+
+
+-----------------------------------------------------------------------------
+
+dbo.TABL AS TB  ON P1.CO_TRAB = TB.IDINI INNER JOIN " & _
+
+
+
+
+

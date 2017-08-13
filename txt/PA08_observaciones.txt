@@ -1,0 +1,96 @@
+﻿USERID,EMAIL_TYPE,EMAIL_ADDRESS,ISPRIMARY,OPERATION,
+SELECT ISNULL(MT.IDUSR,'') [USERID], ''  [EMAIL_TYPE],N1.NO_DIRE_MAI1 [EMAIL_ADDRESS],''  [ISPRIMARY],'' [OPERATION] FROM  dbo.TMTRAB_EMPR AS P1 INNER JOIN dbo.TMTRAB_PERS AS N1 ON P1.CO_TRAB = N1.CO_TRAB  INNER JOIN dbo.MTRA AS MT  ON P1.CO_TRAB = MT.STCD1 INNER JOIN dbo.TDCCOS_TRAB AS C1 ON P1.CO_TRAB = C1.CO_TRAB WHERE  (P1.CO_EMPR = '10') AND (SUBSTRING(CAST(C1.CO_CENT_COST AS CHAR), 1, 3) = '011') AND P1.TI_SITU = 'ACT' ORDER BY CONVERT(VARCHAR(20),MT.IDUSR) 
+La operación de múltiples pasos de OLE DB generó errores. Compruebe los valores de estado de OLE DB si es posible. No se realizó ningún trabajo.
+
+
+
+
+
+Do While Not o_record_sql_sel.EOF
+
+            ' recorre los campos en el registro actual del recordset para recuperar el dato
+            w_linea = ""
+            For i = 0 To o_record_sql_sel.Fields.Count - 1
+
+                Select Case i
+
+                   w_valor = o_record_sql_sel.Fields(c).value
+                End Select
+
+                w_linea = w_linea & w_valor & ","
+                c = c + 1
+                ' w_valor = ""
+            Next
+            'Inserta el detalle al txt
+            b_filtxt.WriteLine(w_linea)
+            ' resetea el indice de las columnas
+            c = 0
+            ' Referencia al registro actual (incrementa )
+            f = f + 1
+            ' Siguiente registro
+            o_record_sql_sel.MoveNext()
+Loop
+
+
+
+
+
+
+
+
+
+
+'For j = 0 To o_record_sql_slc.Fields.count - 1
+            o_record_sql_slc.AddNew()
+            'w_valor_a =
+            'w_valor_a = o_record_sql_slc.Fields(0)
+            'o_record_sql_slc.Fields(0) = o_record_sql_sel.Fields(0).value
+            'o_record_sql_sel.Fields(1) = o_record_sql_sel.Fields(1).value
+            'o_record_sql_sel.Fields(2) = o_record_sql_sel.Fields(2).value
+            'o_record_sql_sel.Fields(3) = o_record_sql_sel.Fields(3).value
+            'o_record_sql_slc.update()
+            'o_record_sql_sel.MoveNext()
+            'Next
+
+
+
+
+
+  w_linea = w_linea & w_valor & ","
+                c = c + 1
+
+
+
+
+
+' recorre los campos en el registro actual del recordset para recuperar el dato
+                w_linea = ""
+                For i = 0 To o_record_sql_sel.Fields.Count - 1
+                    ' For j = 0 To o_record_sql_slc.Fields.count - 1
+                    'w_valor_a = o_record_sql_slc.Fields(c).value
+                    o_record_sql_slc.ad()
+                    .addnew()
+                    .Fields("") = o_record_sql_slc.Fields(0).value
+                    .fields("EMAIL_TYPE") = ""
+                    .fields("EMAIL_ADDRESS") = ""
+                    .fields("ISPRIMARY") = ""
+                    .fields("OPERATION") = ""
+                    .update()
+
+                End With
+                    ' Siguiente registro
+                    'o_record_sql_slc.MoveNext()
+                    'w_linea = w_linea & w_valor & ","
+                    'c = c + 1
+                Next
+
+                ''Inserta el detalle al txt
+                'b_filtxt.WriteLine(w_linea)
+                '' resetea el indice de las columnas
+                'c = 0
+                '' Referencia al registro actual (incrementa )
+                'f = f + 1
+                ' Siguiente registro
+                o_record_sql_sel.MoveNext()
+                'Loop
+

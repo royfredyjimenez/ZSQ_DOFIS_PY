@@ -1,0 +1,31 @@
+﻿OPERATOR,externalCode,name.en_US,name.defaultValue,name.es_ES,name.en_DEBUG,description.en_US,description.defaultValue,description.es_ES,DESCRIPTION.EN_DEBUG,EFFECTIVESTATUS,EFFECTIVESTARTDATE,CUST_DIRIGIDO_POR.CODE,CUST_NIVEL,cust_toBusinessUnit.externalCode,
+,10000001,,GERENCIA DE DESARROLLO DE NEGOCIOS,GERENCIA DE DESARROLLO DE NEGOCIOS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000002,,GERENCIA DE OPERACIONES - LIMA (TAD),GERENCIA DE OPERACIONES - LIMA (TAD),,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000003,,GERENCIA DE PLANEAMIENTO Y DESARROLLO DE PROYECTOS,GERENCIA DE PLANEAMIENTO Y DESARROLLO DE PROYECTOS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000004,,GERENCIA DE PROYECTOS,GERENCIA DE PROYECTOS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000005,,GERENCIA DE RELACIONES EXTERNAS E INSTITUCIONALES,GERENCIA DE RELACIONES EXTERNAS E INSTITUCIONALES,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000006,,GERENCIA DE INGENIERIA Y MEJORA CONTINUA,GERENCIA DE INGENIERIA Y MEJORA CONTINUA,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000007,,GERENCIA DE QHSE,GERENCIA DE QHSE,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000008,,GERENCIA DE ADM Y FINANZAS,GERENCIA DE ADM Y FINANZAS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000009,,GERENCIA DE ADMINISTRACION DE SUBSIDIARIAS,GERENCIA DE ADMINISTRACION DE SUBSIDIARIAS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000010,,GERENCIA DE RRHH,GERENCIA DE RRHH,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000011,,GERENCIA DE SISTEMAS,GERENCIA DE SISTEMAS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000012,,GERENCIA DE TTS,GERENCIA DE TTS,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000013,,GERENCIA DE UN CARGA,GERENCIA DE UN CARGA,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000014,,GERENCIA DE UN OMA,GERENCIA DE UN OMA,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000015,,GERENCIA DE UN RAMPA,GERENCIA DE UN RAMPA,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000016,,GERENCIA DE AUDITORIA INTERNA,GERENCIA DE AUDITORIA INTERNA,,,,,,A,24/07/2017,,Gerencia de Linea,,
+,10000017,,GERENCIA DE SEGURIDAD,GERENCIA DE SEGURIDAD,,,,,,A,24/07/2017,,Gerencia de Linea,,
+
+
+ ' 1.-Define el objeto Connection
+        Dim o_conex As ADODB.Connection
+        o_conex = New ADODB.Connection
+
+   'Crea la variable objeto recordset
+        Dim o_record_sql_sel As ADODB.Recordset
+        o_record_sql_sel = New ADODB.Recordset
+        'Seteamos el CursorLocation para que se pueda ordenar nuestro recorset
+        o_record_sql_sel.CursorLocation = ADODB.CursorLocationEnum.adUseClient
+        'Ejecuta el recorset (p_ssql, o_conex, 2, 3)
+        o_record_sql_sel.Open(p_ssql, o_conex, 1, 3)
